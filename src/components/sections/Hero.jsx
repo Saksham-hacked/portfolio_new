@@ -173,7 +173,7 @@ export default function Hero() {
 
             {/* <RevealImage /> */}
             <div className="hero-img-container relative h-[450px] md:h-[600px] overflow-hidden">
-              <img src="/src/assets/portrait2.jpg" alt="Your Name" className="w-full h-full object-cover" />
+              <img src="/portrait2.jpg" alt="Your Name" className="w-full h-full object-cover" />
             </div>
        
         {/* <div className="hero-img-container relative h-[450px] md:h-[600px] overflow-hidden">
