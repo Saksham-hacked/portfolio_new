@@ -7,22 +7,25 @@ gsap.registerPlugin(ScrollTrigger)
 
 const SKILLS = [
   {
-    category: 'Coding',
+    category: 'Full-Stack Development',
     icon: '{ }',
-    description: 'Frontend & Backend architecture using modern frameworks. Clean, scalable, maintainable code.',
-    items: ['HTML / CSS / JS', 'React.js / Next.js', 'Node.js / Express', 'Tailwind CSS'],
+    description:
+      'Building scalable full-stack web applications with modern JavaScript frameworks. Focused on clean architecture, performance, and real-world usability.',
+    items: ['React.js', 'Node.js / Express', 'MongoDB', 'Tailwind CSS','flask','postgreSQL'],
   },
   {
-    category: 'UI/UX Design',
-    icon: '◻',
-    description: 'Intuitive interfaces and seamless user journeys. Accessibility focused and user-centered.',
-    items: ['Figma / Adobe XD', 'Wireframing', 'Prototyping', 'User Research'],
+    category: 'AI',
+    icon: '◎',
+    description:
+      'Exploring intelligent systems, deep learning , Ai orchestration. Passionate about combining software engineering with AI to build impactful solutions.',
+    items: ['Python', 'deep learning', 'Langchain', 'Langraph', 'AI Agents'],
   },
   {
-    category: 'Graphic Design',
-    icon: '✦',
-    description: 'Visual storytelling through branding, logos, and digital illustrations.',
-    items: ['Photoshop', 'Illustrator', 'Brand Identity', 'Marketing Materials'],
+    category: 'Engineering & Problem Solving',
+    icon: '⚡',
+    description:
+      'Engineering student with strong problem-solving skills and system-level thinking. Interested in scalable software, optimization, and tech innovation.',
+    items: ['DSA & Problem Solving', 'System Design Basics', 'Embedded Systems', 'Git & GitHub'],
   },
 ]
 

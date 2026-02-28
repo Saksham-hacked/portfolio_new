@@ -8,36 +8,44 @@ gsap.registerPlugin(ScrollTrigger)
 const PROJECTS = [
   {
     id: '01',
-    title: 'Project Alpha',
-    category: 'Web Dev',
-    description: 'Full stack e-commerce solution with advanced filtering and real-time updates.',
-    tech: ['React', 'Node.js', 'MongoDB'],
-    link: '#',
+    title: 'Expense Manager AI Assistant',
+    category: 'AI + Backend',
+    description:
+      'AI-powered expense management system built on an MCP-based architecture separating reasoning from execution. Includes secure JWT auth, structured tool pipelines, and Chrome extension interface.',
+    tech: ['Node.js', 'Express', 'MongoDB', 'MCP', 'Chrome Extension'],
+    image: 'src/assets/projects/expense.png',
+    link: 'https://chromewebstore.google.com/detail/expense-manager-ai-assist/bhjicgdndhekipmjgdkhjoecnhlhaphj',
   },
   {
     id: '02',
-    title: 'Mono Dashboard',
-    category: 'UI/UX',
-    description: 'Minimalist dashboard design for data visualization with dark/light mode.',
-    tech: ['Figma', 'React', 'D3.js'],
-    link: '#',
+    title: 'T1D Expert – Diabetes Platform',
+    category: 'Full Stack',
+    description:
+      'Full-stack health tracking platform with event-driven backend workflows and WhatsApp integration for real-time patient logging and automated reminders.',
+    tech: ['MERN', 'WhatsApp Cloud API', 'REST APIs'],
+    image: 'src/assets/projects/t1d.png',
+    link: 'https://it1dxpert.org/',
   },
   {
     id: '03',
-    title: 'Neon Identity',
-    category: 'Graphic',
-    description: 'Brand identity and logo design system for a tech startup.',
-    tech: ['Illustrator', 'Photoshop'],
-    link: '#',
+    title: 'MeView Social Platform',
+    category: 'MERN Stack',
+    description:
+      'Scalable social platform with secure authentication, TMDB API integration across 250k+ titles, and structured backend architecture for reliability and performance.',
+    tech: ['MongoDB', 'Express', 'React', 'Node.js', 'TMDB API'],
+    image: 'src/assets/projects/meview.png',
+    link: 'https://meviewisfun.vercel.app/',
   },
-  {
-    id: '04',
-    title: 'Portfolio v2',
-    category: 'Web Dev',
-    description: 'Personal portfolio built with React, GSAP animations, and Tailwind CSS.',
-    tech: ['React', 'GSAP', 'Tailwind'],
-    link: '#',
-  },
+  // {
+  //   id: '04',
+  //   title: 'Developer Portfolio (GSAP)',
+  //   category: 'Frontend',
+  //   description:
+  //     'Modern animated developer portfolio built with React, GSAP, and Tailwind. Features smooth scrolling, advanced animations, and recruiter-focused UI.',
+  //   tech: ['React', 'GSAP', 'Tailwind', 'Vite'],
+  //   image: '/projects/portfolio.png',
+  //   link: '#',
+  // },
 ]
 
 /**
@@ -91,7 +99,8 @@ export default function Projects() {
           {PROJECTS.map((project) => (
             <div key={project.id} className="work-card work-item">
               {/* Image placeholder — replace with <img src="..." /> */}
-              <div className="img-placeholder h-72 w-full mb-6">
+              <img src={project.image} alt={project.title} className="h-72 w-full object-cover mb-6" />
+              {/* <div className="img-placeholder h-72 w-full mb-6">
                 <svg className="w-10 h-10 mb-3 opacity-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
                   <circle cx="8.5" cy="8.5" r="1.5" />
@@ -99,7 +108,7 @@ export default function Projects() {
                 </svg>
                 <p className="text-[10px] uppercase tracking-widest">Project Screenshot</p>
                 <p className="text-[8px] opacity-40 mt-1">{project.title}</p>
-              </div>
+              </div> */}
 
               <div className="flex items-start justify-between mb-3">
                 <div>

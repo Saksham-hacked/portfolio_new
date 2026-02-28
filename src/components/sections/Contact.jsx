@@ -52,22 +52,24 @@ export default function Contact() {
         {/* ← CHANGE the email */}
         <a
           ref={emailBtn}
-          href="mailto:your@email.com"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=kaushishsaksham@gmail.com"
           className="magnetic-btn group flex items-center gap-4 border border-white/20 px-8 py-5 hover:bg-white hover:text-black transition-all duration-300"
         >
-          <span className="font-mono text-sm tracking-[0.2em] uppercase">your@email.com</span>
+          <span className="font-mono text-sm tracking-[0.2em] uppercase">kaushishsaksham@gmail.com</span>
           <span className="text-xl group-hover:translate-x-1 transition-transform duration-200">→</span>
         </a>
 
         <div className="flex items-center gap-6">
           {[
-            { label: 'GitHub', url: '#' },   /* ← ADD your URLs */
-            { label: 'LinkedIn', url: '#' },
-            { label: 'Twitter', url: '#' },
+            { label: 'GitHub', url: 'https://github.com/saksham-hacked' },   /* ← ADD your URLs */
+            { label: 'LinkedIn', url: 'https://www.linkedin.com/in/reach-saksham-kaushish/' },
+            { label: 'Twitter', url: 'https://x.com/DunkinDomino' },
           ].map(({ label, url }) => (
             <a
               key={label}
               href={url}
+              target="_blank"
+    rel="noopener noreferrer"
               className="font-mono text-[11px] tracking-[0.3em] uppercase text-white/40 hover:text-white transition-colors duration-200"
             >
               {label}

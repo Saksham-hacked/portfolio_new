@@ -8,35 +8,39 @@ gsap.registerPlugin(ScrollTrigger)
 // ← EDIT with your real experience / education
 const TIMELINE = [
   {
-    year: '2024',
+    year: '2023 — Present',
     type: 'Education',
-    title: 'B.Tech Computer Science',
-    org: 'Your University Name',
-    desc: 'Studying core CS fundamentals, algorithms, data structures, and software engineering.',
+    title: 'B.Tech Electrical Engineering',
+    org: 'NIT Jalandhar',
+    desc:
+      'Pursuing Electrical Engineering while actively building skills in full-stack development, backend systems, and AI/ML. Focused on scalable software and strong CS fundamentals.',
     side: 'left',
   },
   {
-    year: '2023',
-    type: 'Freelance',
-    title: 'Frontend Developer',
-    org: 'Self-employed',
-    desc: 'Designed and built websites for local businesses. Focused on React, responsive design, and performance.',
+    year: 'June – July 2025',
+    type: 'Internship',
+    title: 'Full Stack Developer Intern',
+    org: 'iRoots',
+    desc:
+      'Worked as a full-stack developer building and improving web applications using modern MERN stack. Contributed to frontend UI, backend APIs, and real-world deployment workflows in a production environment.',
     side: 'right',
   },
   {
-    year: '2022',
-    type: 'Education',
-    title: 'High School Diploma',
-    org: 'Your School Name',
-    desc: 'Graduated with distinction in Computer Science and Mathematics.',
+    year: '2025 — Present',
+    type: 'Experience',
+    title: 'Backend Developer — Xceed NITJ',
+    org: 'Institute Technical Team',
+    desc:
+      'Developing backend systems, search APIs, and messaging features for institute platforms. Focused on reliability, structured architecture, and scalable backend design.',
     side: 'left',
   },
   {
-    year: '2020',
-    type: 'Self-taught',
-    title: 'Started Coding',
-    org: 'Self-directed Learning',
-    desc: 'Began with HTML, CSS, and JavaScript. Built first projects and found a deep passion for web development.',
+    year: '2023 — Present',
+    type: 'Growth',
+    title: 'Full Stack & AI Development Journey',
+    org: 'Self-driven Learning',
+    desc:
+      'Solved 400+ DSA problems and built multiple MERN and AI-based projects including health platforms, social apps, and intelligent systems while exploring system design and machine learning.',
     side: 'right',
   },
 ]

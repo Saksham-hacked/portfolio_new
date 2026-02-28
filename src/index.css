@@ -17,7 +17,24 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-scrolling iframe { pointer-events: none; }
 
+
+/* Hide hero elements BEFORE GSAP touches them */
+.hero-reveal {
+  will-change: transform, opacity;
+}
+
+.hero-img-container {
+  will-change: transform, opacity;
+}
+
+#navbar {
+  opacity: 0;
+  visibility: hidden;
+}
+
 body {
+  opacity: 0;
+  visibility: hidden;
   background-color: var(--bg-color);
   color: var(--text-main);
   font-family: 'Inter', sans-serif;
