@@ -87,7 +87,7 @@ export default function About() {
           {/* ← EDIT these paragraphs */}
           <p className="about-para text-black/60 leading-relaxed max-w-md mb-6 font-light">
             I’m a developer driven by curiosity and precision — passionate about crafting seamless digital products that are both visually refined and technically robust.
-Currently an Electrical Engineering student, focused on software development, machine learning, and modern web technologies.
+Currently an Electrical Engineering student, focused on software development, AI systems, and modern web technologies.
           </p>
           <p className="about-para text-black/40 leading-relaxed max-w-md font-light text-sm">
             From full-stack applications to AI-powered tools, I love building solutions that are fast, scalable, and meaningful.
