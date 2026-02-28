@@ -13,7 +13,7 @@ const PROJECTS = [
     description:
       'AI-powered expense management system built on an MCP-based architecture separating reasoning from execution. Includes secure JWT auth, structured tool pipelines, and Chrome extension interface.',
     tech: ['Node.js', 'Express', 'MongoDB', 'MCP', 'Chrome Extension'],
-    image: 'src/assets/projects/expense.png',
+    image: '/projects/expense.png',
     link: 'https://chromewebstore.google.com/detail/expense-manager-ai-assist/bhjicgdndhekipmjgdkhjoecnhlhaphj',
   },
   {
@@ -23,7 +23,7 @@ const PROJECTS = [
     description:
       'Full-stack health tracking platform with event-driven backend workflows and WhatsApp integration for real-time patient logging and automated reminders.',
     tech: ['MERN', 'WhatsApp Cloud API', 'REST APIs'],
-    image: 'src/assets/projects/t1d.png',
+    image: '/projects/t1d.png',
     link: 'https://it1dxpert.org/',
   },
   {
@@ -33,7 +33,7 @@ const PROJECTS = [
     description:
       'Scalable social platform with secure authentication, TMDB API integration across 250k+ titles, and structured backend architecture for reliability and performance.',
     tech: ['MongoDB', 'Express', 'React', 'Node.js', 'TMDB API'],
-    image: 'src/assets/projects/meview.png',
+    image: '/projects/meview.png',
     link: 'https://meviewisfun.vercel.app/',
   },
   // {
