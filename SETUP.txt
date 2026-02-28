@@ -1,0 +1,89 @@
+PORTFOLIO REACT VERSION — SETUP GUIDE
+======================================
+
+STEP 1 — INSTALL DEPENDENCIES
+------------------------------
+Open terminal in this folder and run:
+
+  npm install
+
+This installs React, Vite, GSAP, Lenis, and Tailwind.
+
+
+STEP 2 — RUN DEV SERVER
+------------------------
+  npm run dev
+
+Open: http://localhost:5173
+
+
+STEP 3 — BUILD FOR PRODUCTION
+------------------------------
+  npm run build
+  npm run preview
+
+
+STEP 4 — WHAT TO CUSTOMIZE
+----------------------------
+
+1. YOUR NAME & ROLE
+   File: src/components/sections/Hero.jsx
+   Change "YOUR NAME" and the role text.
+
+2. ABOUT TEXT + BIRTH DATE
+   File: src/components/sections/About.jsx
+   Update BIRTH_DATE and CAREER_START constants.
+   Edit the paragraph text with your story.
+
+3. PROJECTS
+   File: src/components/sections/Projects.jsx
+   Update the PROJECTS array at the top.
+
+4. EXPERIENCE TIMELINE
+   File: src/components/sections/Experience.jsx
+   Update the TIMELINE array.
+
+5. CONTACT EMAIL
+   File: src/components/sections/Contact.jsx
+   Change "your@email.com" in the mailto link.
+
+6. YOUR PHOTO
+   - Add portrait to: src/assets/portrait.jpg
+   - In Hero.jsx replace the .img-placeholder div with:
+     <img src="/src/assets/portrait.jpg" alt="Your Name" className="w-full h-full object-cover" />
+
+7. NAVBAR LOGO
+   File: src/components/Navbar.jsx
+   Change "YN.DEV" to your own initials.
+
+8. SOCIAL LINKS
+   Files: src/components/Footer.jsx and Contact.jsx
+   Replace "#" with your real GitHub, LinkedIn, Twitter URLs.
+
+
+STEP 5 — FOLDER STRUCTURE
+---------------------------
+src/
+├── components/
+│   ├── MagneticCursor.jsx
+│   ├── Loader.jsx
+│   ├── Navbar.jsx
+│   ├── Footer.jsx
+│   └── sections/
+│       ├── Hero.jsx
+│       ├── Marquee.jsx
+│       ├── About.jsx
+│       ├── Skills.jsx
+│       ├── Projects.jsx
+│       ├── Experience.jsx
+│       └── Contact.jsx
+├── animations/
+│   ├── lenis.js
+│   └── gsapAnimations.js
+├── hooks/
+│   ├── useMagnetic.js
+│   └── useGSAP.js
+├── assets/
+├── App.jsx
+├── main.jsx
+└── index.css
