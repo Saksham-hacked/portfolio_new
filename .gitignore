@@ -52,10 +52,6 @@ temp/
 
 # Optional: ignore local screenshots/assets
 screenshots/
-*.png
-*.jpg
-*.jpeg
-*.gif
 
 # Optional: ignore lock files if team decision
 # package-lock.json
