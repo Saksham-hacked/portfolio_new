@@ -6,7 +6,6 @@ import LocationMap from '../Map'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// ← CHANGE THESE to your real dates
 const BIRTH_DATE = new Date('2005-04-23T00:00:00')
 const CAREER_START = new Date('2023-07-10T00:00:00')
 
@@ -26,19 +25,12 @@ function calcAge() {
   if (months < 0) { months += 12; years-- }
 
   const expYrs = Math.max(0, now.getFullYear() - CAREER_START.getFullYear())
-  const expMos = now.getMonth() - CAREER_START.getMonth()
-  // const totalMos = Math.max(0, expYrs * 12 + expMos)
   const projects = 20
-
   return { years, months, days, hours, minutes, seconds, expYrs, projects }
 }
 
 const pad = (n) => String(n).padStart(2, '0')
 
-/**
- * About
- * Story, stats, live age chronometer, and location map placeholder.
- */
 export default function About() {
   const [age, setAge] = useState(calcAge())
   const sectionRef = useRef(null)
@@ -68,90 +60,77 @@ export default function About() {
   }, [], sectionRef)
 
   return (
-    <section id="about" ref={sectionRef} className="py-32 px-8 md:px-16 bg-white">
+    <section id="about" ref={sectionRef} className="py-20 md:py-32 px-5 sm:px-8 md:px-16 bg-white overflow-hidden">
 
-      <div className="mb-16">
+      <div className="mb-10 md:mb-16">
         <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-black/30">Location_Data</span>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-20">
 
         {/* Story */}
         <div>
-          {/* ← CHANGE city/country */}
-          <h2 className="about-heading text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-tight tracking-tight mb-8">
+          <h2 className="about-heading text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-tight tracking-tight mb-6 md:mb-8">
             Born in<br />
             <span className="text-black/30">Roorkee</span>
           </h2>
 
-          {/* ← EDIT these paragraphs */}
-          <p className="about-para text-black/60 leading-relaxed max-w-md mb-6 font-light">
-            I’m a developer driven by curiosity and precision — passionate about crafting seamless digital products that are both visually refined and technically robust.
-Currently an Electrical Engineering student, focused on software development, AI systems, and modern web technologies.
+          <p className="about-para text-black/60 leading-relaxed max-w-md mb-4 md:mb-6 font-light text-sm md:text-base">
+            I'm a developer driven by curiosity and precision — passionate about crafting seamless digital products that are both visually refined and technically robust.
+            Currently an Electrical Engineering student, focused on software development, AI systems, and modern web technologies.
           </p>
-          <p className="about-para text-black/40 leading-relaxed max-w-md font-light text-sm">
+          <p className="about-para text-black/40 leading-relaxed max-w-md font-light text-xs md:text-sm">
             From full-stack applications to AI-powered tools, I love building solutions that are fast, scalable, and meaningful.
           </p>
 
-          <div className="mt-12 flex gap-12">
+          <div className="mt-8 md:mt-12 flex gap-8 md:gap-12">
             <div className="about-stat">
-              <p className="font-mono text-4xl font-bold">{age.expYrs}+</p>
+              <p className="font-mono text-3xl md:text-4xl font-bold">{age.expYrs}+</p>
               <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-black/40 mt-1">Years coding.</p>
             </div>
             <div className="about-stat">
-              <p className="font-mono text-4xl font-bold">{age.projects}+</p>
+              <p className="font-mono text-3xl md:text-4xl font-bold">{age.projects}+</p>
               <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-black/40 mt-1">Projects Done</p>
             </div>
           </div>
         </div>
 
         {/* Chronometer */}
-        <div className="chronometer-box border border-black/10 p-8">
-          <div className="flex items-center gap-3 mb-8">
+        <div className="chronometer-box border border-black/10 p-5 sm:p-8">
+          <div className="flex items-center gap-3 mb-6 md:mb-8">
             <div className="w-2 h-2 rounded-full bg-black" />
             <span className="font-mono text-[10px] tracking-[0.35em] uppercase text-black/40">System Runtime</span>
           </div>
 
-          <h3 className="text-2xl font-black uppercase tracking-tight mb-8">Life Chronometer</h3>
+          <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-6 md:mb-8">Life Chronometer</h3>
 
-          <div className="grid grid-cols-3 gap-4">
+          {/* 3-col on all screens but smaller text on mobile */}
+          <div className="grid grid-cols-3 gap-2 sm:gap-4">
             {[
-              { label: 'Years', val: pad(age.years) },
-              { label: 'Months', val: pad(age.months) },
-              { label: 'Days', val: pad(age.days) },
-              { label: 'Hours', val: pad(age.hours) },
+              { label: 'Years',   val: pad(age.years)   },
+              { label: 'Months',  val: pad(age.months)  },
+              { label: 'Days',    val: pad(age.days)    },
+              { label: 'Hours',   val: pad(age.hours)   },
               { label: 'Minutes', val: pad(age.minutes) },
               { label: 'Seconds', val: pad(age.seconds) },
             ].map(({ label, val }) => (
-              <div key={label} className="bg-black/[0.03] p-4 text-center">
-                <p className="age-digit text-3xl font-bold leading-none">{val}</p>
-                <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-black/40 mt-2">{label}</p>
+              <div key={label} className="bg-black/[0.03] p-2 sm:p-4 text-center">
+                <p className="age-digit text-xl sm:text-3xl font-bold leading-none">{val}</p>
+                <p className="font-mono text-[7px] sm:text-[9px] tracking-[0.2em] uppercase text-black/40 mt-1">{label}</p>
               </div>
             ))}
           </div>
 
-          <div className="sec-bar-track mt-6">
+          <div className="sec-bar-track mt-4 md:mt-6">
             <div className="sec-bar-fill" style={{ width: `${(age.seconds / 60) * 100}%` }} />
           </div>
 
-          <p className="font-mono text-[9px] tracking-[0.2em] uppercase text-black/25 mt-4">
+          <p className="font-mono text-[8px] tracking-[0.15em] uppercase text-black/25 mt-3 md:mt-4 break-all">
             Origin: {BIRTH_DATE.toISOString()}
           </p>
         </div>
       </div>
 
-      {/* Map placeholder
-          Replace with a real SVG world map or react-simple-maps component */}
-      {/* <div className="mt-24">
-        <div className="img-placeholder h-56 w-full max-w-2xl mx-auto">
-          <svg className="w-8 h-8 mb-3 opacity-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-            <circle cx="12" cy="10" r="3" />
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-          </svg>
-          <p>World Map / Location</p>
-          <p className="mt-1 text-[9px] opacity-50">Replace with SVG map or react-simple-maps</p>
-        </div>
-      </div> */}
       <LocationMap />
     </section>
   )
