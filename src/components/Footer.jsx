@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="border-t border-black/10 px-8 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-black/40">
+    <footer className="border-t border-black/10 px-5 sm:px-8 py-8 flex flex-col items-center gap-6 md:flex-row md:justify-between md:gap-4">
+      <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-black/40 text-center md:text-left">
         © {new Date().getFullYear()} saksham kaushish. All rights reserved.
       </span>
 
@@ -15,7 +15,7 @@ export default function Footer() {
             key={label}
             href={url}
             target="_blank"
-    rel="noopener noreferrer"
+            rel="noopener noreferrer"
             className="font-mono text-[10px] tracking-[0.2em] uppercase text-black/40 hover:text-black transition-colors duration-200"
           >
             {label}
@@ -23,7 +23,7 @@ export default function Footer() {
         ))}
       </div>
 
-      <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-black/40">
+      <span className="font-mono text-[11px] tracking-[0.25em] uppercase text-black/40 text-center md:text-right">
         Designed &amp; Built by Saksham.K
       </span>
     </footer>

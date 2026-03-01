@@ -111,7 +111,7 @@ export default function Hero() {
 
       {/* DEV label */}
       <div className="absolute top-32 left-8 md:left-16">
-        <span className="font-mono text-[10px] tracking-[0.4em] text-black/30 uppercase">Dev</span>
+        <span className="font-mono text-[10px] tracking-[0.4em] text-black/30 uppercase md:flex hidden">Dev</span>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-end">

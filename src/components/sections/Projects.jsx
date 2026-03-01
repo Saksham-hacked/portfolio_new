@@ -1,10 +1,9 @@
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// ← EDIT with your real projects
 const PROJECTS = [
   {
     id: '01',
@@ -36,34 +35,121 @@ const PROJECTS = [
     image: '/projects/meview.png',
     link: 'https://meviewisfun.vercel.app/',
   },
-  // {
-  //   id: '04',
-  //   title: 'Developer Portfolio (GSAP)',
-  //   category: 'Frontend',
-  //   description:
-  //     'Modern animated developer portfolio built with React, GSAP, and Tailwind. Features smooth scrolling, advanced animations, and recruiter-focused UI.',
-  //   tech: ['React', 'GSAP', 'Tailwind', 'Vite'],
-  //   image: '/projects/portfolio.png',
-  //   link: '#',
-  // },
 ]
 
-/**
- * Projects
- * Horizontally scrollable cards pinned to viewport while scrolling.
- */
+/* ─── Mobile accordion item ─────────────────────────────────────── */
+function AccordionItem({ project, isOpen, onToggle }) {
+  const bodyRef = useRef(null)
+
+  useEffect(() => {
+    const el = bodyRef.current
+    if (!el) return
+    if (isOpen) {
+      el.style.maxHeight = el.scrollHeight + 'px'
+      el.style.opacity = '1'
+    } else {
+      el.style.maxHeight = '0px'
+      el.style.opacity = '0'
+    }
+  }, [isOpen])
+
+  return (
+    <div className="border-t border-black/10 last:border-b">
+      {/* Header row — always visible */}
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between py-5 px-5 text-left group"
+      >
+        <div className="flex items-center gap-4">
+          <span className="font-mono text-3xl font-bold text-black/10 group-hover:text-black/20 transition-colors">
+            {project.id}
+          </span>
+          <div>
+            <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-black/30 block mb-0.5">
+              {project.category}
+            </span>
+            <h3 className="text-sm font-bold uppercase tracking-tight leading-tight">
+              {project.title}
+            </h3>
+          </div>
+        </div>
+
+        {/* Animated +/× */}
+        <div className="flex-shrink-0 w-7 h-7 border border-black/20 rounded-full flex items-center justify-center ml-3">
+          <span
+            className="font-mono text-xs text-black/50 transition-transform duration-300"
+            style={{ transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)', display: 'inline-block' }}
+          >
+            +
+          </span>
+        </div>
+      </button>
+
+      {/* Collapsible body */}
+      <div
+        ref={bodyRef}
+        style={{ maxHeight: '0px', opacity: 0, overflow: 'hidden', transition: 'max-height 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.35s ease' }}
+      >
+        <div className="px-5 pb-6">
+          {/* Image */}
+          <div className="w-full h-48 mb-4 overflow-hidden">
+            <img
+              src={project.image}
+              alt={project.title}
+              className="w-full h-full object-cover"
+              style={{ transform: isOpen ? 'scale(1)' : 'scale(1.05)', transition: 'transform 0.6s ease' }}
+            />
+          </div>
+
+          {/* Description */}
+          <p className="text-xs text-black/50 leading-relaxed font-light mb-4">
+            {project.description}
+          </p>
+
+          {/* Tech tags */}
+          <div className="flex flex-wrap gap-2 mb-5">
+            {project.tech.map((t) => (
+              <span
+                key={t}
+                className="font-mono text-[8px] tracking-[0.2em] uppercase px-2 py-1 border border-black/15 text-black/40"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.3em] uppercase bg-black text-white px-5 py-3 hover:bg-black/80 transition-colors"
+          >
+            View Project <span>→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─── Main component ─────────────────────────────────────────────── */
 export default function Projects() {
   const containerRef = useRef(null)
   const wrapperRef = useRef(null)
+  const [openIndex, setOpenIndex] = useState(0) // first card open by default
 
+  /* Desktop GSAP horizontal scroll — unchanged */
   useEffect(() => {
     const container = containerRef.current
     const wrapper = wrapperRef.current
     if (!container || !wrapper) return
 
+    // Only run on desktop
+    if (window.innerWidth < 768) return
+
     const ctx = gsap.context(() => {
       const getScrollAmount = () => -(wrapper.scrollWidth - window.innerWidth)
-
       const tween = gsap.to(wrapper, { x: getScrollAmount, ease: 'none' })
 
       ScrollTrigger.create({
@@ -81,10 +167,12 @@ export default function Projects() {
     return () => ctx.revert()
   }, [])
 
+  const toggle = (i) => setOpenIndex(openIndex === i ? null : i)
+
   return (
     <section id="works">
-      {/* Header — outside the pin zone */}
-      <div className="px-8 md:px-16 pt-32 pb-8 bg-white">
+      {/* Section header */}
+      <div className="px-5 sm:px-8 md:px-16 pt-24 md:pt-32 pb-6 md:pb-8 bg-white">
         <div className="flex items-center justify-between mb-4">
           <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-black/30">Selected Works</span>
           <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-black/30">02</span>
@@ -92,23 +180,32 @@ export default function Projects() {
         <h2 className="text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-tight tracking-tight">Works</h2>
       </div>
 
-      {/* Pinned horizontal container */}
-      <div ref={containerRef} className="overflow-hidden bg-white" id="works-container">
-        <div ref={wrapperRef} className="works-wrapper py-16" id="works-wrapper">
+      {/* ── MOBILE: accordion ─────────────────────────────────────── */}
+      <div className="md:hidden bg-white pb-16 px-0">
+        {PROJECTS.map((project, i) => (
+          <AccordionItem
+            key={project.id}
+            project={project}
+            isOpen={openIndex === i}
+            onToggle={() => toggle(i)}
+          />
+        ))}
 
+        {/* View all row */}
+        <div className="border-t border-black/10 px-5 py-5 flex items-center justify-between">
+          <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-black/30">More coming soon</span>
+          <div className="w-7 h-7 border border-black/20 rounded-full flex items-center justify-center">
+            <span className="text-xs text-black/40">→</span>
+          </div>
+        </div>
+      </div>
+
+      {/* ── DESKTOP: pinned horizontal scroll ─────────────────────── */}
+      <div ref={containerRef} className="hidden md:block overflow-hidden bg-white" id="works-container">
+        <div ref={wrapperRef} className="works-wrapper py-16" id="works-wrapper">
           {PROJECTS.map((project) => (
             <div key={project.id} className="work-card work-item">
-              {/* Image placeholder — replace with <img src="..." /> */}
               <img src={project.image} alt={project.title} className="h-72 w-full object-cover mb-6" />
-              {/* <div className="img-placeholder h-72 w-full mb-6">
-                <svg className="w-10 h-10 mb-3 opacity-20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <circle cx="8.5" cy="8.5" r="1.5" />
-                  <polyline points="21 15 16 10 5 21" />
-                </svg>
-                <p className="text-[10px] uppercase tracking-widest">Project Screenshot</p>
-                <p className="text-[8px] opacity-40 mt-1">{project.title}</p>
-              </div> */}
 
               <div className="flex items-start justify-between mb-3">
                 <div>
@@ -130,7 +227,12 @@ export default function Projects() {
                 ))}
               </div>
 
-              <a href={project.link} className="font-mono text-[10px] tracking-[0.3em] uppercase hover:opacity-50 transition-opacity flex items-center gap-2">
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-[10px] tracking-[0.3em] uppercase hover:opacity-50 transition-opacity flex items-center gap-2"
+              >
                 View Project <span>→</span>
               </a>
             </div>

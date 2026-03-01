@@ -5,7 +5,6 @@ import { useGSAP } from '../../hooks/useGSAP'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// ← EDIT with your real experience / education
 const TIMELINE = [
   {
     year: '2023 — Present',
@@ -45,22 +44,23 @@ const TIMELINE = [
   },
 ]
 
-/**
- * Experience
- * Vertical timeline with animated line drawing on scroll.
- */
 export default function Experience() {
   const sectionRef = useRef(null)
-  const lineRef = useRef(null)
+
+  // Separate refs for each layout's animated line
+  const mobileLineRef = useRef(null)
+  const mobileContainerRef = useRef(null)
+  const desktopLineRef = useRef(null)
+  const desktopContainerRef = useRef(null)
 
   useGSAP(() => {
-    const line = lineRef.current
-    if (line) {
-      gsap.to(line, {
+    // ── Desktop line animation ──
+    if (desktopLineRef.current && desktopContainerRef.current) {
+      gsap.to(desktopLineRef.current, {
         height: '100%',
         ease: 'none',
         scrollTrigger: {
-          trigger: '.timeline-container',
+          trigger: desktopContainerRef.current,
           start: 'top center',
           end: 'bottom center',
           scrub: 0.5,
@@ -68,7 +68,23 @@ export default function Experience() {
       })
     }
 
+    // ── Mobile line animation ──
+    if (mobileLineRef.current && mobileContainerRef.current) {
+      gsap.to(mobileLineRef.current, {
+        height: '100%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: mobileContainerRef.current,
+          start: 'top center',
+          end: 'bottom center',
+          scrub: 0.5,
+        },
+      })
+    }
+
+    // ── Item entrance animations ──
     document.querySelectorAll('.timeline-item').forEach((item) => {
+      const isMobile = window.innerWidth < 768
       gsap.from(item, {
         scrollTrigger: {
           trigger: item,
@@ -76,7 +92,8 @@ export default function Experience() {
           toggleActions: 'play reverse play reverse',
         },
         opacity: 0,
-        x: item.classList.contains('timeline-left') ? -40 : 40,
+        x: isMobile ? 0 : item.classList.contains('timeline-left') ? -40 : 40,
+        y: isMobile ? 20 : 0,
         duration: 0.8,
         ease: 'power3.out',
       })
@@ -84,21 +101,48 @@ export default function Experience() {
   }, [], sectionRef)
 
   return (
-    <section id="experience" ref={sectionRef} className="py-32 px-8 md:px-16 bg-white">
+    <section id="experience" ref={sectionRef} className="py-20 md:py-32 px-5 sm:px-8 md:px-16 bg-white overflow-hidden">
 
-      <div className="flex items-center justify-between mb-20">
+      <div className="flex items-center justify-between mb-12 md:mb-20">
         <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-black/30">Experience & Education</span>
         <span className="font-mono text-[10px] tracking-[0.4em] uppercase text-black/30">04</span>
       </div>
 
-      <h2 className="text-[clamp(2rem,5vw,4rem)] font-black uppercase leading-tight tracking-tight mb-20 max-w-2xl">
+      <h2 className="text-[clamp(1.8rem,5vw,4rem)] font-black uppercase leading-tight tracking-tight mb-12 md:mb-20 max-w-2xl">
         My Journey<br />
         <span className="text-black/30">So Far</span>
       </h2>
 
-      <div className="timeline-container relative max-w-4xl mx-auto">
+      {/* ── MOBILE layout (< md): left-anchored line ── */}
+      <div ref={mobileContainerRef} className="md:hidden relative">
+        <div className="absolute left-3 top-0 w-px h-full bg-black/10" />
+        <div ref={mobileLineRef} className="absolute left-3 top-0 w-px bg-black" style={{ height: '0%', zIndex: 1 }} />
+
+        <div className="flex flex-col">
+          {TIMELINE.map((item, i) => (
+            <div key={i} className="timeline-item timeline-left relative flex gap-5 py-8 pl-10">
+              <div className="absolute left-[7px] top-9 w-3 h-3 rounded-full bg-white border-2 border-black z-10 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-black/30 border border-black/15 px-2 py-0.5">
+                    {item.type}
+                  </span>
+                  <span className="font-mono text-[9px] tracking-[0.3em] uppercase text-black/30">{item.year}</span>
+                </div>
+                <h3 className="text-base font-bold uppercase tracking-tight mb-0.5 leading-tight">{item.title}</h3>
+                <p className="font-mono text-[10px] tracking-wider text-black/40 mb-2">{item.org}</p>
+                <p className="text-xs text-black/50 leading-relaxed font-light">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* ── DESKTOP layout (≥ md): center line, alternating sides ── */}
+      <div ref={desktopContainerRef} className="hidden md:block timeline-container relative max-w-4xl mx-auto">
         <div className="timeline-line-bg" />
-        <div ref={lineRef} className="timeline-progress" />
+        {/* ← ref now correctly on the desktop progress line */}
+        <div ref={desktopLineRef} className="timeline-progress" />
 
         <div className="flex flex-col gap-0">
           {TIMELINE.map((item, i) => (
@@ -120,7 +164,6 @@ export default function Experience() {
                 <p className="text-sm text-black/50 leading-relaxed font-light max-w-xs">{item.desc}</p>
               </div>
 
-              {/* Center dot */}
               <div className="relative flex-shrink-0 flex items-center justify-center w-8">
                 <div className="w-3 h-3 rounded-full bg-white border-2 border-black z-10" />
               </div>
