@@ -5,6 +5,18 @@ import ScrollTrigger from 'gsap/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 
 const PROJECTS = [
+  
+{
+  id: '00',
+  title: 'AutoDocs – Autonomous Docs Agent',
+  category: 'AI + Backend',
+  description:
+    'AI agent that analyzes GitHub commit diffs and auto-maintains repository documentation via pull requests. Built on a FastAPI + LangGraph pipeline with RAG-based repo memory using pgvector for cross-module context.',
+  tech: ['Python', 'FastAPI', 'LangGraph', 'Node.js', 'pgvector', 'GitHub Webhooks'],
+  image: '/projects/autodocs.png',
+  link: 'https://github.com/apps/autodoc-test-110',
+}
+  ,
   {
     id: '01',
     title: 'Expense Manager AI Assistant',
