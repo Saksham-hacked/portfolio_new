@@ -28,7 +28,17 @@ const PROJECTS = [
     link: 'https://chromewebstore.google.com/detail/expense-manager-ai-assist/bhjicgdndhekipmjgdkhjoecnhlhaphj',
   },
   {
-    id: '02',
+  id: '02',
+  title: 'NutaScreener – AI Resume Screener',
+  category: 'AI + Fullstack',
+  description:
+    'AI-powered resume screening platform that evaluates candidates across weighted criteria and generates ranked comparisons. Features batch processing, parallel execution, and structured scoring logic for consistent LLM outputs.',
+  tech: ['React', 'Express', 'PostgreSQL', 'Vercel', 'Railway'],
+  image: '/projects/nutascreener.png',
+  link: 'https://resume-screener-client.vercel.app/',
+},
+  {
+    id: '03',
     title: 'T1D Expert – Diabetes Platform',
     category: 'Full Stack',
     description:
@@ -38,7 +48,7 @@ const PROJECTS = [
     link: 'https://it1dxpert.org/',
   },
   {
-    id: '03',
+    id: '04',
     title: 'MeView Social Platform',
     category: 'MERN Stack',
     description:
